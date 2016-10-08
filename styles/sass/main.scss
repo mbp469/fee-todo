@@ -4,7 +4,79 @@
 @import 'form';
 @import 'items';
 @import 'footer';
+$grey: #989292;
 
 body {
-  background: lightblue;
+    background: lightblue;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+}
+
+header {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    background: beige;
+    border: 1px solid $grey;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+.list-item {
+    position: relative;
+    line-height: 2em;
+}
+
+.new-todo {
+    width: 40%;
+    line-height: 3em;
+    margin: 3% 0 3% 5%;
+    text-align: center;
+}
+
+.check {
+    position: absolute;
+    top: 3px;
+    left: 178px;
+    z-index: 1;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid $grey;
+    background: transparent;
+
+    &.completed {
+        background-image: url("https://openclipart.org/download/257462/Checkmark.svg");
+        background-position: 65% 50%;
+        background-size: 73%;
+        background-repeat: no-repeat;
+    }
+}
+
+.edit-todo {
+    width: 40%;
+    line-height: 2em;
+    text-align: center;
+    top: -26%;
+    left: 30%;
+}
+
+.delete {
+  height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 4px;
+      right: 181px;
+      background-image: url("data:image/png;base64,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");
+      border: 1px solid $grey;
+      background-repeat: no-repeat;
+      background-size: 30px;
 }

@@ -42,12 +42,12 @@
     </main>
     <!-- template -->
     <script id="to-do-list" type="text/x-handlebars-template">
-        <li class="{{completion-status}}">
+        <li class ="list-item" class="{{completion-status}}">
             <article>
-                <button class='check'></button>
-                <p>{{to-do-text}}</p>
+                <button class='check completed'></button>
+                <!-- <p>{{to-do-text}}</p> -->
                 <input type='text' class='edit-todo' value={{to-do-text}}>
-                <button class='delete'>X</button>
+                <button class='delete'></button>
             </article>
         </li>
     </script>
