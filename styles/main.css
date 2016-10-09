@@ -384,6 +384,11 @@ main {
   margin: 0 10%;
   position: relative; }
 
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2%; }
+
 .list-item {
   position: relative;
   line-height: 2em; }
@@ -409,6 +414,10 @@ main {
     background-position: 65% 50%;
     background-size: 73%;
     background-repeat: no-repeat; }
+
+.remaining {
+  text-align: right;
+  margin: 4% 2%; }
 
 .edit-todo {
   width: 40%;

@@ -35,18 +35,18 @@
                     <li><button class='show-all active'>All</button></li>
                     <li><button class='show-active'>Active</button></li>
                     <li><button class='show-completed'>Completed</button></li>
+                    <li> <button class='clear'>Clear completed</button></li>
                 </ul>
             </nav>
-            <button class='clear'>Clear completed</button>
         </footer>
     </main>
     <!-- template -->
     <script id="to-do-list" type="text/x-handlebars-template">
-        <li class ="list-item" class="{{completion-status}}">
+        <li class="list-item" class="{{completion-status}}">
             <article>
                 <button class='check completed'></button>
                 <!-- <p>{{to-do-text}}</p> -->
-                <input type='text' class='edit-todo' value={{to-do-text}}>
+                <input type='text' class='edit-todo' value="{{to-do-text}}">
                 <button class='delete'></button>
             </article>
         </li>
