@@ -54,8 +54,23 @@ var toDoList = {
         /* when 'Active" is clicked, show only incomplete items. */
         $('.show-active').on('click', function(event){
           self.goThroughItems('incomplete');
-          console.log('in active click event');
         });
+
+        /* when 'Completed' is clicked, show only completed items. */
+        $('.show-completed').on('click', function(event){
+          self.goThroughItems('complete');
+        });
+
+        /* when 'All' is clicked, show all items. */
+        $('.show-all').on('click', function(event){
+          self.goThroughItems('all');
+        });
+
+        /* when 'Clear completed' is click, show only incomplete items. */
+        $('.clear').on('click', function(event){
+          self.goThroughItems('incomplete');
+        });
+
     },
 
     /* The index from goThroughItems is passed in and all the info from that array item is then passed into Handlebars template and appended to .items. */
@@ -85,14 +100,23 @@ var toDoList = {
     /* go through each item in arrayOfItems, run createElements with the index of the item as the input. */
     goThroughItems: function(completionStatus) {
       $('.items').empty();
-      console.log("in go through items.");
       completionStatus = completionStatus || 'all';
 
       /* if completionStatus is 'incomplete', the item is active and should be displayed */
       if(completionStatus === 'incomplete') {
         for (var index in this.arrayOfItems){
-          if (this.arrayOfItems[index].completed === false){
+          if (this.arrayOfItems[index].completed === false) {
             this.createElements(index);
+          }
+        }
+      }
+
+      /* if completionStatus is 'complete', then item is completed and should be displayed. */
+      if(completionStatus === 'complete') {
+        for (var index3 in this.arrayOfItems){
+          if (this.arrayOfItems[index3].completed === true) {
+            this.createElements(index3);
+            console.log("completed element: " + this.arrayOfItems[index3]);
           }
         }
       }
