@@ -33,11 +33,11 @@ var toDoList = {
           console.log(objectFromArray);
         });
         /* when item is hovered, show the red x */
-        $(document).on('mouseenter', '.list-item', function(event) {
-          $(event.target).find('.delete').toggleClass('hidden');
+        $('.items').on('mouseenter', 'article', function(event) {
+          $(this).find('.delete').toggleClass('hidden');
         });
-        $(document).on('mouseleave', '.list-item', function(event) {
-          $(event.target).find('.delete').toggleClass('hidden');
+        $('.items').on('mouseleave', 'article', function(event) {
+          $(this).find('.delete').toggleClass('hidden');
         });
 
         /* when x is clicked, remove item from array and reprint elements. */
