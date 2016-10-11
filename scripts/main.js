@@ -21,7 +21,6 @@ var toDoList = {
             var itemToAdd = $('.new-todo').val();
             $('.new-todo').val('');
             self.addListItem(itemToAdd);
-
             self.goThroughItems();
         });
         /* when circle is clicked, add checkmark, collect id, update array */
@@ -29,8 +28,13 @@ var toDoList = {
           $(event.target).parent().toggleClass('true', 'false');
           var id = $(event.target).parents('li').attr('id');
           var objectFromArray = self.arrayOfItems[id];
-          objectFromArray.completed = true;
-          console.log(objectFromArray);
+          /* toggle array value. There is probably a much better way than this to do it. */
+          if (objectFromArray.completed === false){
+            objectFromArray.completed = true;
+          } else {
+            objectFromArray.completed = false;
+          }
+
         });
         /* when item is hovered, show the red x */
         $('.items').on('mouseenter', 'article', function(event) {
@@ -46,9 +50,15 @@ var toDoList = {
           self.arrayOfItems.splice(id, 1);
           self.goThroughItems();
         });
+
+        /* when 'Active" is clicked, show only incomplete items. */
+        $('.show-active').on('click', function(event){
+          self.goThroughItems('incomplete');
+          console.log('in active click event');
+        });
     },
 
-/* The index from goThroughItems is passed in and all the info from that array item is then passed into Handlebars template and appended to .items. */
+    /* The index from goThroughItems is passed in and all the info from that array item is then passed into Handlebars template and appended to .items. */
     createElements: function(itemNum) {
         var todoItem = this.arrayOfItems[itemNum].description;
         var completionItem = this.arrayOfItems[itemNum].completed;
@@ -72,15 +82,33 @@ var toDoList = {
         completed: false,
     }],
 
-    /* for each item in arrayOfItems, run createElements with the index of the item as the input. */
-    goThroughItems: function() {
+    /* go through each item in arrayOfItems, run createElements with the index of the item as the input. */
+    goThroughItems: function(completionStatus) {
+      $('.items').empty();
+      console.log("in go through items.");
+      completionStatus = completionStatus || 'all';
+
+      /* if completionStatus is 'incomplete', the item is active and should be displayed */
+      if(completionStatus === 'incomplete') {
+        for (var index in this.arrayOfItems){
+          if (this.arrayOfItems[index].completed === false){
+            this.createElements(index);
+          }
+        }
+      }
+
+      /* if no completionStatus specified, display all items in arrayOfItems */
+      if(completionStatus === 'all'){
       var count = 0;
       $('.items').empty();
-        for (var index in this.arrayOfItems) {
-            this.createElements(index);
-            count ++;
+        for (var index2 in this.arrayOfItems) {
+            this.createElements(index2);
+            if (this.arrayOfItems[index2].completed === false) {
+              count ++;
+            }
         }
         document.getElementById('incomplete-items').innerHTML = count;
+      }
     },
 
     //add an item object to the array of items
