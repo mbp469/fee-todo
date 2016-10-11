@@ -32,6 +32,14 @@ var toDoList = {
           objectFromArray.completed = true;
           console.log(objectFromArray);
         });
+        /* when item is hovered, show the red x */
+        $(document).on('mouseenter', '.list-item', function(event) {
+          $(event.target).find('.delete').toggleClass('hidden');
+        });
+        $(document).on('mouseleave', '.list-item', function(event) {
+          $(event.target).find('.delete').toggleClass('hidden');
+        });
+
         /* when x is clicked, remove item from array and reprint elements. */
         $(document).on('click', '.delete', function(event){
           var id = $(event.target).parents('li').attr('id');
@@ -61,15 +69,18 @@ var toDoList = {
         completed: false,
     }, {
         description: "take out trash",
-        completed: true,
+        completed: false,
     }],
 
     /* for each item in arrayOfItems, run createElements with the index of the item as the input. */
     goThroughItems: function() {
+      var count = 0;
       $('.items').empty();
         for (var index in this.arrayOfItems) {
             this.createElements(index);
+            count ++;
         }
+        document.getElementById('incomplete-items').innerHTML = count;
     },
 
     //add an item object to the array of items

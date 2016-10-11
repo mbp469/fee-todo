@@ -41,6 +41,7 @@ nav {
 .list-item {
     position: relative;
     line-height: 2em;
+    z-index: 2;
 }
 
 .new-todo {
@@ -72,7 +73,7 @@ article {
         }
         input {
           text-decoration: line-through;
-          color: lightgray;
+          color: $grey;
         }
     }
 }
@@ -91,6 +92,7 @@ article {
 }
 
 .delete {
+
     height: 30px;
     width: 30px;
     position: absolute;
@@ -100,4 +102,7 @@ article {
     border: 1px solid $grey;
     background-repeat: no-repeat;
     background-size: 30px;
+    &.hidden {
+      visibility: hidden;
+    }
 }

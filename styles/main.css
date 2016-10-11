@@ -391,7 +391,8 @@ nav ul {
 
 .list-item {
   position: relative;
-  line-height: 2em; }
+  line-height: 2em;
+  z-index: 2; }
 
 .new-todo {
   width: 40%;
@@ -417,7 +418,7 @@ article.true .check {
   background-repeat: no-repeat; }
 article.true input {
   text-decoration: line-through;
-  color: lightgray; }
+  color: #989292; }
 
 .remaining {
   text-align: right;
@@ -440,5 +441,7 @@ article.true input {
   border: 1px solid #989292;
   background-repeat: no-repeat;
   background-size: 30px; }
+  .delete.hidden {
+    visibility: hidden; }
 
 /*# sourceMappingURL=main.css.map */
