@@ -60,12 +60,20 @@ nav {
     border-radius: 50%;
     border: 1px solid $grey;
     background: transparent;
+}
 
-    &.completed {
-        background-image: url("https://openclipart.org/download/257462/Checkmark.svg");
-        background-position: 65% 50%;
-        background-size: 73%;
-        background-repeat: no-repeat;
+article {
+    &.true {
+        .check {
+            background-image: url("https://openclipart.org/download/257462/Checkmark.svg");
+            background-position: 65% 50%;
+            background-size: 73%;
+            background-repeat: no-repeat;
+        }
+        input {
+          text-decoration: line-through;
+          color: lightgray;
+        }
     }
 }
 

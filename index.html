@@ -42,8 +42,8 @@
     </main>
     <!-- template -->
     <script id="to-do-list" type="text/x-handlebars-template">
-        <li class="list-item" class="{{completion-status}}">
-            <article>
+        <li class="list-item" id="{{list-number}}">
+            <article class="false">
                 <button class='check completed'></button>
                 <!-- <p>{{to-do-text}}</p> -->
                 <input type='text' class='edit-todo' value="{{to-do-text}}">
