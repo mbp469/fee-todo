@@ -21,14 +21,23 @@ var toDoList = {
             var itemToAdd = $('.new-todo').val();
             $('.new-todo').val('');
             self.addListItem(itemToAdd);
+
             self.goThroughItems();
         });
-        //toggle completed or not completed
+        /* when circle is clicked, add checkmark, collect id, update array */
         $(document).on('click', '.check', function(event){
           $(event.target).parent().toggleClass('true', 'false');
-          console.log(self.arrayOfItems);
+          var id = $(event.target).parents('li').attr('id');
+          var objectFromArray = self.arrayOfItems[id];
+          objectFromArray.completed = true;
+          console.log(objectFromArray);
         });
-
+        /* when x is clicked, remove item from array and reprint elements. */
+        $(document).on('click', '.delete', function(event){
+          var id = $(event.target).parents('li').attr('id');
+          self.arrayOfItems.splice(id, 1);
+          self.goThroughItems();
+        });
     },
 
 /* The index from goThroughItems is passed in and all the info from that array item is then passed into Handlebars template and appended to .items. */
@@ -57,6 +66,7 @@ var toDoList = {
 
     /* for each item in arrayOfItems, run createElements with the index of the item as the input. */
     goThroughItems: function() {
+      $('.items').empty();
         for (var index in this.arrayOfItems) {
             this.createElements(index);
         }
