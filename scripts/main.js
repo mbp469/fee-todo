@@ -77,8 +77,17 @@ var toDoList = {
           self.goThroughItems('all');
         });
 
-        /* when 'Clear completed' is click, show only incomplete items. */
+        /* when 'Clear completed' is clicked, show only incomplete items. Update array.*/
         $('.clear').on('click', function(event){
+          //update array
+          var clearedArray = [];
+          for(var index4 in self.arrayOfItems){
+            if(self.arrayOfItems[index4].completed === false) {
+              clearedArray.push(self.arrayOfItems[index4]);
+            }
+          }
+          self.arrayOfItems = clearedArray;
+          console.log(clearedArray);
           self.goThroughItems('incomplete');
         });
 
@@ -100,13 +109,7 @@ var toDoList = {
     },
 
     /* holds objects that contain information about each to-do */
-    arrayOfItems: [{
-        description: "walk the dog",
-        completed: false,
-    }, {
-        description: "take out trash",
-        completed: false,
-    }],
+    arrayOfItems: [],
 
     /* go through each item in arrayOfItems, run createElements with the index of the item as the input. */
     goThroughItems: function(completionStatus) {
