@@ -23,6 +23,17 @@ var toDoList = {
             self.addListItem(itemToAdd);
             self.goThroughItems();
         });
+        /* when text in list item is edited, when enter is pressed, update info in array to match */
+        $('.items').keypress('.edit-todo',function(event){
+          if(event.keyCode == 13) {
+            var updatedText = $(event.target).val();
+            var indexToUpdate = $(event.target).parents('li').attr('id');
+            //update array....
+            self.arrayOfItems[indexToUpdate].description = updatedText;
+            self.goThroughItems('all');
+          }
+        });
+
         /* when circle is clicked, add checkmark, collect id, update array */
         $(document).on('click', '.check', function(event){
           $(event.target).parent().toggleClass('true', 'false');
